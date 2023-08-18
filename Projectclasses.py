@@ -1,4 +1,5 @@
 
+
 class Doctor:
 
     def __init__(self, ID = '', name = '', specialization = '', working_time = '', qualification = '', room_number = ''):
@@ -76,6 +77,69 @@ class DoctorManager:
             if self.doctor[x] == id:
                 print (doctor[x].getdoctor_ID, Doctor.getdoctor_name, Doctor.getdoctor_specialization, Doctor.getdoctor_working_time, Doctor.getdoctor_qualification)
             x = x + 1
+
+    def search_doctor_by_name(self):
+
+        name = input("Enter the doctor Name: ")
+
+        x = 0
+
+        while x != self.doctor.__len__:
+
+            if self.doctor[x] == name:
+                print (doctor[x].getdoctor_ID, Doctor.getdoctor_name, Doctor.getdoctor_specialization, Doctor.getdoctor_working_time, Doctor.getdoctor_qualification)
+            x = x + 1
+
+    def display_doctor_info(self):
+
+        for i in doctor:
+
+            return '%s_%s_%s_%s_%s_%s' .format(i.getdoctor_ID, i.getdoctor_name, i.getdoctor_specialization, i.getdoctor_working_time, i.getdoctor_qualification, i.getdoctor_room_number)
+
+    def edit_doctor_info(self):
+
+        id = input("Enter the doctor ID of the doctor you want to edit: ")
+
+        x = 0
+
+        while x != self.doctor.__len__:
+
+            if doctor[x].ID == id:
+
+                doctor[x].name = input("Enter the new name: ")
+                doctor[x].specialization = input("Enter the new specilization: ")
+                doctor[x].working_time = input("Enter the new working time: ")
+                doctor[x].qualification = input("Enter the new qualification: ")
+                doctor[x].room_number = input("Enter the new room number: ")
+
+                print (doctor[x].getdoctor_ID, Doctor.getdoctor_name, Doctor.getdoctor_specialization, Doctor.getdoctor_working_time, Doctor.getdoctor_qualification)
+            x = x + 1
+
+            ###else: print ("Cannot find doctor with ID", new_id )
+
+        return doctor
+    
+    def Write_list_of_doctors_to_file():
+
+        list_doctors = ''
+
+        list_doctors = display_doctor_info()
+
+
+    def add_dr_to_file(self):
+
+        new_ID = input("Enter the new doctor's ID: ")
+        new_Name = input("Enter the new doctor's name: ")
+        new_Specialization = input("Enter the new doctor's specialization: ")
+        new_Working_Time = input("Enter the new doctor's working time: ")
+        new_Qualification = input("Enter the new doctor's qualification: ")
+        new_Room_number = input("Enter the new doctor's Room number: ")
+
+        doctor.append(Doctor(new_ID,new_Name,new_Qualification,new_Room_number,new_Room_number, new_Specialization,new_Working_Time))
+
+
+        return doctor
+            
 
 ## pid, name, disease, gender, age 
 
