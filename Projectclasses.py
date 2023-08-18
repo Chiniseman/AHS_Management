@@ -215,9 +215,9 @@ class PatientManager:
                 print (patient[x].getpatient_PID, Patient.getpatient_name, Patient.getpatient_disease, Patient.getpatient_gender, Patient.getpatient_age)
             x = x + 1
 
-    def search_doctor_by_name(self):
+    def search_patient_by_name(self):
 
-        name = input("Enter the doctor Name: ")
+        name = input("Enter the patient's name: ")
 
         x = 0
 
