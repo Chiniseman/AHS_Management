@@ -108,6 +108,50 @@ class Patient:
     def __str__(self): return '%s_%s_%s_%s_%s_%s' .format(self.PID, self.Name, self.Disease, self.Gender, self.Age)
 
 
+class PatientManager:
+
+    def __init__(self):
+        docfile = open("patients.txt")
+
+        patient = []
+
+        patientclass = ""
+
+        for x in docfile:
+
+            patientclass = docfile.readline()
+
+            PatientManager.patient[x] = Patient(patientclass.split("_"))
+
+        print (patient[1].ID)
+        
+        return patient[x]
+
+    def format_patient_info_for_file(self, PID, name, Disease, gender, age): return '%s_%s_%s_%s_%s' .format(PID, name,  Disease, gender, age)
+
+    def enter_patient_info(self):
+
+        new_PID = input("Enter the patient’s ID: ")
+        new_name = input("Enter the patient's name: ")
+        new_disease = input("Enter the patient’s disease: ")
+        new_gender = input("Enter the patient's gender: ")
+        new_age = input("Enter the patient's age: ")
+
+        return self.patient.__add__(new_PID, new_name, new_disease, new_gender, new_age)
+
+    def search_patient_by_id(self):
+
+        id = input("Enter the patient's ID: ")
+
+        x = 0
+
+        while x != self.patient.__len__:
+
+            if self.patient[x] == id:
+                print (patient[x].getpatient_PID, Patient.getpatient_name, Patient.getpatient_disease, Patient.getpatient_gender, Patient.getpatient_age)
+            x = x + 1
+
+## pid, name, disease, gender, age 
 
 
 
@@ -197,5 +241,3 @@ while option != 3:
 
 
     if option == 3: break
-
-#CommitTest
