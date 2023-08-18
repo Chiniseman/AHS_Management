@@ -135,7 +135,7 @@ class DoctorManager:
         new_Qualification = input("Enter the new doctor's qualification: ")
         new_Room_number = input("Enter the new doctor's Room number: ")
 
-        doctor.append(Doctor(new_ID,new_Name,new_Qualification,new_Room_number,new_Room_number, new_Specialization,new_Working_Time))
+        doctor.append(Doctor(new_ID,new_Name,new_Qualification,new_Room_number,new_Specialization,new_Working_Time))
 
 
         return doctor
@@ -215,8 +215,68 @@ class PatientManager:
                 print (patient[x].getpatient_PID, Patient.getpatient_name, Patient.getpatient_disease, Patient.getpatient_gender, Patient.getpatient_age)
             x = x + 1
 
-## pid, name, disease, gender, age 
+    def search_doctor_by_name(self):
 
+        name = input("Enter the doctor Name: ")
+
+        x = 0
+
+        while x != self.patient.__len__:
+
+            if self.patient[x] == name:
+                print (patient[x].getpatient_PID, Patient.getpatient_name, Patient.getpatient_disease, Patient.getpatient_gender, Patient.getpatient_age)
+            x = x + 1
+
+    def display_patient_info(self):
+
+        for i in patient:
+
+            return '%s_%s_%s_%s_%s_%s' .format(i.getpatient_PID, i.getpatient_name, i.getpatient_disease, i.getpatient_gender, i.getpatient_age)
+
+    def edit_patient_info(self):
+
+        id = input("Enter the patient ID of the patient you want to edit: ")
+
+        x = 0
+
+        while x != self.patient.__len__:
+
+            if patient[x].PID == id:
+
+                patient[x].name = input("Enter the new name: ")
+                patient[x].disease = input("Enter the new specilization: ")
+                patient[x].gender = input("Enter the new working time: ")
+                patient[x].age = input("Enter the new qualification: ")
+
+                print (patient[x].getpatient_PID, Patient.getpatient_name, Patient.getpatient_disease, Patient.getpatient_gender, Patient.getpatient_age)
+            x = x + 1
+
+            ###else: print ("Cannot find doctor with ID", new_id )
+
+        return patient
+    
+    def Write_list_of_patients_to_file():
+
+        list_patients = ''
+
+        list_patients = display_patient_info()
+
+
+    def add_patient_to_file(self):
+
+        new_PID = input("Enter the new patient's ID: ")
+        new_name = input("Enter the new patient's name: ")
+        new_disease = input("Enter the new patient's disease: ")
+        new_gender = input("Enter the new patient's gender: ")
+        new_age = input("Enter the new patient's age: ")
+
+        patient.append(Patient(new_PID,new_name,new_disease,new_gender,new_age))
+
+
+        return patient
+            
+
+## pid, name, disease, gender, age 
 
 
 option = 0
