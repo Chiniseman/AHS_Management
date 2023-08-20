@@ -1,6 +1,6 @@
 class Doctor:
 
-    def __init__(self, ID = '', name = '', specialization = '', working_time = '', qualification = '', room_number = ''):
+    def __init__(self, ID, name, specialization, working_time, qualification, room_number):
 
         self.ID = ID
         self.Name = name
@@ -36,7 +36,7 @@ class Doctor:
 class DoctorManager:
 
     def __init__(self):
-      
+
         self.doctors = self.read_doctors_file()
     
 
@@ -51,12 +51,14 @@ class DoctorManager:
         for x in range(0, 6):
             doctorclass = docfile.readline()
 
-
+           
             thing = doctorclass.split('_')
 
-            doctor.append(Doctor(thing))
+            doctor.append(Doctor(thing[0], thing[1], thing[2], thing[3], thing[4], thing[5]))
 
             x = x + 1
+
+        docfile.close()
 
         return doctor
 
@@ -66,18 +68,19 @@ class DoctorManager:
 
     def format_dr_info(self): 
 
+        doctors = self.read_doctors_file(self)
+
         x = 0
 
         other_doctors = []
         
-        for x in self.doctors:
+        for x in doctors:
 
-             print (self.doctors[x].getdoctor_ID(),"_", self.doctors[x].getdoctor_name(),"_", self.doctors[x].getdoctor_specialization(),"_", self.doctors[x].getdoctor_working_time(),"_", self.doctors[x].getdoctor_qualification(),"_", self.doctors[x].getdoctor_room_number())
-
-        
-        return other_doctors
+            return (doctors[x].getdoctor_ID(),"_", doctors[x].getdoctor_name(),"_", doctors[x].getdoctor_specialization(),"_", doctors[x].getdoctor_working_time(),"_", doctors[x].getdoctor_qualification(),"_", doctors[x].getdoctor_room_number())
 
     def enter_dr_info(self):
+
+        doctors = self.read_doctors_file()
 
         new_ID = input("Enter the doctor’s ID: ")
         new_name = input("Enter the doctor's name: ")
@@ -86,7 +89,12 @@ class DoctorManager:
         new_qualification = input("Enter the doctor’s qualification: ")
         new_room_number = input("Enter the doctor’s room number: ")
 
-        return self.doctors.append(new_ID, new_name, new_specialization, new_working_time, new_qualification, new_room_number)
+        doctors.append(new_ID, new_name, new_specialization, new_working_time, new_qualification, new_room_number)
+
+        self.Write_list_of_doctors_to_file(doctors)
+
+
+
 
     def search_doctor_by_id(self):
 
@@ -94,10 +102,16 @@ class DoctorManager:
 
         x = 0
 
-        while x != self.doctors.__len__:
+        for x in range(self.doctors.__len__()):
 
             if self.doctors[x].getdoctor_ID() == id:
-                print (self.doctors[x].getdoctor_ID(), self.doctors[x].getdoctor_name(), self.doctors[x].getdoctor_specialization(), self.doctors[x].getdoctor_working_time(), self.doctors[x].getdoctor_qualification())
+
+                print ("Id   Name                   Speciality      Timing          Qualification   Room Number")
+                print("")
+
+                print (self.doctors[x].getdoctor_ID()," ", self.doctors[x].getdoctor_name(),"              ", self.doctors[x].getdoctor_specialization(),"           ", self.doctors[x].getdoctor_working_time(),"        ", self.doctors[x].getdoctor_qualification(),"       ", self.doctors[x].getdoctor_room_number())
+                break
+            
             x = x + 1
 
     def search_doctor_by_name(self):
@@ -106,17 +120,24 @@ class DoctorManager:
 
         x = 0
 
-        while x != self.doctors.__len__:
+        for x in range(self.doctors.__len__()):
 
-            if self.doctors[x].getdoctor_name() == name:
-                print (self.doctors[x].getdoctor_ID(), self.doctors[x].getdoctor_name(), self.doctors[x].getdoctor_specialization(), self.doctors[x].getdoctor_working_time(), self.doctors[x].getdoctor_qualification())
+            if self.doctors[x].getdoctor_ID() == name:
+
+                print ("Id   Name                   Speciality      Timing          Qualification   Room Number")
+                print("")
+
+                print (self.doctors[x].getdoctor_ID()," ", self.doctors[x].getdoctor_name(),"              ", self.doctors[x].getdoctor_specialization(),"           ", self.doctors[x].getdoctor_working_time(),"        ", self.doctors[x].getdoctor_qualification(),"       ", self.doctors[x].getdoctor_room_number())
+                break
+            
             x = x + 1
+
 
     def display_doctor_info(self):
 
-        for i in self.doctors:
+        for x in range(self.doctors.__len__()):
+            print (self.doctors[x].getdoctor_ID(), self.doctors[x].getdoctor_name(), self.doctors[x].getdoctor_specialization(), self.doctors[x].getdoctor_working_time(), self.doctors[x].getdoctor_qualification(), self.doctors[x].getdoctor_room_number())
 
-            print (self.doctors[x].ID(),"_", self.doctors[x].name(),"_", self.doctors[x].Specialization(),"_", self.doctors[x].Working_Time(),"_", self.doctors[x].Qualification(),"_", self.doctors[x].Room_number())
             x = x + 1
 
     def edit_doctor_info(self):
@@ -125,29 +146,45 @@ class DoctorManager:
 
         x = 0
 
-        while x != self.doctor.__len__:
+        for x in range(self.doctors.__len__()):
 
-            if self.doctor[x].getdoctor_ID == id:
+            if self.doctors[x].getdoctor_ID() == id:
 
-                self.doctors[x].name = input("Enter the new name: ")
-                self.doctors[x].specialization = input("Enter the new specilization: ")
-                self.doctors[x].working_time = input("Enter the new working time: ")
-                self.doctors[x].qualification = input("Enter the new qualification: ")
-                self.doctors[x].room_number = input("Enter the new room number: ")
+                name = input("Enter the new name: ")
+                specialization = input("Enter the new specilization: ")
+                working_time = input("Enter the new working time: ")
+                qualification = input("Enter the new qualification: ")
+                room_number = input("Enter the new room number: ")
 
-                print (self.doctors[x].getdoctor_ID(), self.doctors[x].getdoctor_name(), self.doctors[x].getdoctor_specialization(), self.doctors[x].getdoctor_working_time(), self.doctors[x].getdoctor_qualification())
+                self.doctors[x].set_doctor_name(name)
+                self.doctors[x].set_doctor_specialization(specialization)
+                self.doctors[x].set_doctor_working_time(working_time)
+                self.doctors[x].set_doctor_qualification(qualification)
+                self.doctors[x].set_doctor_room_number(room_number)
+
+                print (self.doctors[x].getdoctor_ID(), self.doctors[x].getdoctor_name(), self.doctors[x].getdoctor_specialization(), self.doctors[x].getdoctor_working_time(), self.doctors[x].getdoctor_qualification(), self.doctors[x].getdoctor_room_number())
+
+                return self.doctors
             x = x + 1
+
+        
 
             ###else: print ("Cannot find doctor with ID", new_id )
     
     def Write_list_of_doctors_to_file(self):
 
-        list_doctors = []
+        list_doctors = ''
 
+        docfile = open("C:/Users/J/Documents/SAIT/PROGRAMMING_WORKSPACE/OOP1/W14/doctors.txt", "w") 
 
-        for i in self.doctors:
+        x = 0
 
-            list_doctors.append(self.doctors[x].ID(),"_", self.doctors[x].getdoctor_name(),"_", self.doctors[x].Specialization(),"_", self.doctors[x].Working_Time(),"_", self.doctors[x].Qualification(),"_", self.doctors[x].Room_number())
+        for x in range(self.doctors.__len__()):
+
+            list_doctors = (self.doctors[x].getdoctor_ID(),"_", self.doctors[x].getdoctor_name(),"_", self.doctors[x].getdoctor_specialization(),"_", self.doctors[x].getdoctor_working_time(),"_", self.doctors[x].getdoctor_qualification(),"_", self.doctors[x].getdoctor_room_number())
+
+            docfile.write(list_doctors)
+
             x = x + 1
 
 
@@ -344,6 +381,7 @@ while option != 3:
     if option == 1:
         menu = 0
         while menu != 6:
+
             menu = int(input(''' Doctors Menu:
                             1 - Display Doctors list
                             2 - Search for doctor by ID
@@ -352,13 +390,15 @@ while option != 3:
                             5 - Edit doctor info
                             6 - Back to the Main Menu'''))
             print("")
+
+            thing = DoctorManager()
             
 
-            if menu == 1: DoctorManager.display_doctor_info()
-            if menu == 2: DoctorManager.search_doctor_by_id()
-            if menu == 3: DoctorManager.search_doctor_by_name()
-            if menu == 4: DoctorManager.enter_dr_info()
-            if menu == 5: DoctorManager.edit_doctor_info()
-            if menu == 6: DoctorManager.Write_list_of_doctors_to_file(); break
+            if menu == 1: thing.display_doctor_info()
+            if menu == 2: thing.search_doctor_by_id()
+            if menu == 3: thing.search_doctor_by_name()
+            if menu == 4: thing.enter_dr_info()
+            if menu == 5: thing.edit_doctor_info()
+            if menu == 6: thing.Write_list_of_doctors_to_file(); break
 
     if option == 3: break
